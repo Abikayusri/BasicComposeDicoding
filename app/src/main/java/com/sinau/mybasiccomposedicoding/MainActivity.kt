@@ -150,7 +150,6 @@ fun RowExample(name: String) {
 //    }
 
 
-
     Card(
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(
@@ -189,8 +188,6 @@ fun RowExample(name: String) {
             }
         }
     }
-
-
 
 
 //    Row(
