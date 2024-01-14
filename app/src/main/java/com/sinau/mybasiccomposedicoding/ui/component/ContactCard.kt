@@ -1,6 +1,9 @@
 package com.sinau.mybasiccomposedicoding.ui.component
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,12 +11,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -23,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -34,28 +39,43 @@ import com.sinau.mybasiccomposedicoding.ui.theme.MyBasicComposeDicodingTheme
 
 @Composable
 fun ContactCard() {
+    val context = LocalContext.current
     Row(
-        modifier = Modifier.padding(8.dp),
+//        modifier = Modifier.padding(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp)
+            .clickable(onClick = {
+                Toast
+                    .makeText(context, "Click", Toast.LENGTH_SHORT)
+                    .show()
+            }),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box {
             Image(
                 painter = painterResource(R.drawable.avatar1),
                 contentDescription = null,
+//                modifier = Modifier
+//                    .size(60.dp)
+//                    .clip(CircleShape)
+
                 modifier = Modifier
-                    .size(60.dp)
+                    .padding(4.dp)
+                    .border(2.dp, Color.Green, CircleShape)
                     .clip(CircleShape)
+                    .size(60.dp)
             )
 
-            Icon(
-                imageVector = Icons.Default.CheckCircle,
-                contentDescription = null,
-                tint = Color.Green,
-                modifier = Modifier.align(Alignment.BottomEnd)
-            )
+//            Icon(
+//                imageVector = Icons.Default.CheckCircle,
+//                contentDescription = null,
+//                tint = Color.Green,
+//                modifier = Modifier.align(Alignment.BottomEnd)
+//            )
         }
         Spacer(modifier = Modifier.width(8.dp))
-        Column {
+        Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = "Abika Chairul Yusri",
                 fontWeight = FontWeight.Bold
@@ -65,6 +85,12 @@ fun ContactCard() {
                 text = "Online"
             )
         }
+
+        Icon(
+            imageVector = Icons.Filled.Check,
+            contentDescription = null,
+            modifier = Modifier.offset(x = 8.dp, y = 30.dp)
+        )
     }
 }
 
@@ -256,9 +282,11 @@ fun RowAlignmentPreview() {
 
 @Composable
 fun BoxAlignment() {
-    Box(modifier = Modifier
-        .padding(16.dp)
-        .fillMaxSize()) {
+    Box(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxSize()
+    ) {
         ButtonWithText("TopStart", Modifier.align(Alignment.TopStart))
         ButtonWithText("TopCenter", Modifier.align(Alignment.TopCenter))
         ButtonWithText("TopEnd", Modifier.align(Alignment.TopEnd))
@@ -290,9 +318,11 @@ fun ButtonWithText(text: String, modifier: Modifier = Modifier) {
 
 @Composable
 fun RowButtonMaxWidth(arrangement: Arrangement.Horizontal = Arrangement.Start) {
-    Row(horizontalArrangement = arrangement, modifier = Modifier
-        .padding(16.dp)
-        .fillMaxWidth()) {
+    Row(
+        horizontalArrangement = arrangement, modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth()
+    ) {
         ButtonC("")
         Spacing()
         ButtonC("")
@@ -321,9 +351,11 @@ fun ArrangementPreview() {
 
 @Composable
 fun Weight() {
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .padding(16.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
         Row {
             ButtonWithText("1", Modifier.weight(1f))
             ButtonWithText("1", Modifier.weight(1f))
