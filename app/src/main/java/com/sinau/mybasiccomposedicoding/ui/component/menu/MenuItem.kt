@@ -29,13 +29,13 @@ fun MenuItem(
     menu: Menu,
     modifier: Modifier = Modifier,
 ) {
-    Card(
+    Card (
         modifier = modifier.width(140.dp),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.background
-        )
-    ) {
+            containerColor = MaterialTheme.colorScheme.background,
+        ),
+    ){
         Column {
             Image(
                 painter = painterResource(menu.image),
@@ -46,21 +46,18 @@ fun MenuItem(
                     .height(120.dp)
                     .clip(RoundedCornerShape(8.dp))
             )
-
-            Column(modifier = modifier.padding(8.dp)) {
+            Column(modifier = Modifier.padding(8.dp)) {
                 Text(
                     text = menu.title,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.ExtraBold
-                    )
+                    ),
                 )
-
                 Text(
                     text = menu.price,
-                    overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.titleSmall
+                    style = MaterialTheme.typography.titleSmall,
                 )
             }
         }
