@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import com.sinau.mybasiccomposedicoding.model.dummyBestSellerMenu
 import com.sinau.mybasiccomposedicoding.model.dummyMenu
-import com.sinau.mybasiccomposedicoding.ui.component.SectionText
+import com.sinau.mybasiccomposedicoding.ui.component.HomeSection
 import com.sinau.mybasiccomposedicoding.ui.component.banner.Banner
 import com.sinau.mybasiccomposedicoding.ui.component.category.CategoryRow
 import com.sinau.mybasiccomposedicoding.ui.component.menu.MenuRow
@@ -50,12 +50,15 @@ private fun JetCoffeApp(modifier: Modifier = Modifier) {
                 .padding(innerPadding)
         ) {
             Banner()
-            SectionText(stringResource(R.string.section_category))
-            CategoryRow()
-            SectionText(stringResource(R.string.section_favorite_menu))
-            MenuRow(dummyMenu)
-            SectionText(stringResource(R.string.section_best_seller_menu))
-            MenuRow(dummyBestSellerMenu)
+            HomeSection(title = stringResource(R.string.section_category)) {
+                CategoryRow()
+            }
+            HomeSection(stringResource(R.string.section_best_seller_menu), Modifier) {
+                MenuRow(dummyMenu)
+            }
+            HomeSection(stringResource(R.string.section_best_seller_menu)) {
+                MenuRow(dummyBestSellerMenu)
+            }
         }
     }
 }
