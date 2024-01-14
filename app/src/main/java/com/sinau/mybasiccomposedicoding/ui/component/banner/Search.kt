@@ -1,4 +1,4 @@
-package com.sinau.mybasiccomposedicoding.ui.component
+package com.sinau.mybasiccomposedicoding.ui.component.banner
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn

@@ -1,7 +1,8 @@
-package com.sinau.mybasiccomposedicoding.ui.component
+package com.sinau.mybasiccomposedicoding.ui.component.banner
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,7 +20,7 @@ fun Banner(modifier: Modifier = Modifier) {
             painter = painterResource(R.drawable.banner),
             contentDescription = "Banner Image",
             contentScale = ContentScale.FillBounds,
-            modifier = Modifier.heightIn(160.dp)
+            modifier = Modifier.height(160.dp)
         )
         Search()
     }

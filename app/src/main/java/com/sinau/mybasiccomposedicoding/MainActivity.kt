@@ -8,9 +8,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import com.sinau.mybasiccomposedicoding.ui.component.Banner
+import com.sinau.mybasiccomposedicoding.ui.component.SectionText
+import com.sinau.mybasiccomposedicoding.ui.component.banner.Banner
+import com.sinau.mybasiccomposedicoding.ui.component.category.CategoryRow
 import com.sinau.mybasiccomposedicoding.ui.theme.MyBasicComposeDicodingTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,6 +43,8 @@ private fun JetCoffeApp(modifier: Modifier = Modifier) {
             modifier = modifier.padding(innerPadding)
         ) {
             Banner()
+            SectionText(stringResource(R.string.section_category))
+            CategoryRow()
         }
     }
 }
