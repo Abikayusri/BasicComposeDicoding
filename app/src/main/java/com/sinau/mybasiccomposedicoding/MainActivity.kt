@@ -17,6 +17,7 @@ import com.sinau.mybasiccomposedicoding.model.dummyBestSellerMenu
 import com.sinau.mybasiccomposedicoding.model.dummyMenu
 import com.sinau.mybasiccomposedicoding.ui.component.HomeSection
 import com.sinau.mybasiccomposedicoding.ui.component.banner.Banner
+import com.sinau.mybasiccomposedicoding.ui.component.bottom.BottomBar
 import com.sinau.mybasiccomposedicoding.ui.component.category.CategoryRow
 import com.sinau.mybasiccomposedicoding.ui.component.menu.MenuRow
 import com.sinau.mybasiccomposedicoding.ui.theme.MyBasicComposeDicodingTheme
@@ -43,7 +44,9 @@ fun ContactCardPreview() {
 
 @Composable
 private fun JetCoffeApp(modifier: Modifier = Modifier) {
-    Scaffold { innerPadding ->
+    Scaffold(
+        bottomBar = { BottomBar() }
+    ) { innerPadding ->
         Column(
             modifier = modifier
                 .verticalScroll(rememberScrollState())
