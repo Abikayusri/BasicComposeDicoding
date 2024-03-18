@@ -1,4 +1,4 @@
-package com.sinau.mybasiccomposedicoding
+package com.sinau.mybasiccomposedicoding.model
 
 import androidx.compose.ui.graphics.vector.ImageVector
 
