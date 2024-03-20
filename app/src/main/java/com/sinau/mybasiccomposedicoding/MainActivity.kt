@@ -21,7 +21,9 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     // Add code here
-                    MyNavDrawerApp()
+                    val nameList = listOf("Abika", "Narendra", "Nadia")
+//                    Contact(nameList)
+                    ColorBox2()
                 }
             }
         }
