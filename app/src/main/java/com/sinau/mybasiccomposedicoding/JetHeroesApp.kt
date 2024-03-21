@@ -1,16 +1,19 @@
 package com.sinau.mybasiccomposedicoding
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,6 +22,8 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -54,6 +59,7 @@ fun JetHeroesApp(
 ) {
 
     val groupedHeroes by viewModel.groupedHeroes.collectAsState()
+    val query by viewModel.query
 
     Box(modifier = modifier) {
         // rememberCoroutineScope -> digunakan untuk menjalankan suspend function di dalam Composable function
@@ -75,6 +81,15 @@ fun JetHeroesApp(
             state = listState,
             contentPadding = PaddingValues(bottom = 80.dp)
         ) {
+
+            item {
+                SearchBar(
+                    query = query,
+                    onQueryChange = viewModel::search,
+                    modifier = Modifier.background(MaterialTheme.colorScheme.primary)
+                )
+            }
+
             groupedHeroes.forEach { (initial, heroes) ->
                 stickyHeader {
                     CharacterHeader(initial)
@@ -84,7 +99,9 @@ fun JetHeroesApp(
                     HeroListItem(
                         name = hero.name,
                         photoUrl = hero.photoUrl,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .animateItemPlacement(tween(durationMillis = 100))
                     )
                 }
             }
@@ -187,5 +204,37 @@ fun CharacterHeader(
                 .fillMaxWidth()
                 .padding(8.dp)
         )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SearchBar(
+    query: String,
+    onQueryChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    androidx.compose.material3.SearchBar(
+        query = query,
+        onQueryChange = onQueryChange,
+        onSearch = {},
+        active = false,
+        onActiveChange = {},
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        },
+        placeholder = {
+            Text(stringResource(R.string.search_hero))
+        },
+        shape = MaterialTheme.shapes.large,
+        modifier = modifier
+            .padding(16.dp)
+            .fillMaxWidth()
+            .heightIn(min = 48.dp)
+    ) {
     }
 }
