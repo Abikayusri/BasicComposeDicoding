@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     // Add code here
-                    JetHeroesApp()
+                    JetRewardApp()
                 }
             }
         }
